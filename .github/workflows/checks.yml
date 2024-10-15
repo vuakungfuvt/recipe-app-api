@@ -22,10 +22,10 @@ jobs:
         run: |
           sudo docker-compose run --rm app sh -c "django-admin startproject app . && chown -R django-user:django-user /app"
       - name: List /app directory
-        run: docker-compose run --rm app sh -c "ls -la /app"
+        run: sudo docker-compose run --rm app sh -c "ls -la /app"
       - name: Test
-        run: docker-compose run --rm app sh -c "python manage.py test"
+        run: sudo docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
-        run: docker-compose run --rm app sh -c "flake8"
+        run: sudo docker-compose run --rm app sh -c "flake8"
       - name: Tear down Docker Compose
-        run: docker-compose down
+        run: sudo docker-compose down
