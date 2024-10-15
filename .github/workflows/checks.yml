@@ -19,6 +19,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
+
+      - name: Set up Docker Compose
+        run: docker-compose up -d
       - name: Initialize Django Project
         run: |
           if [ ! -f app/manage.py ]; then
