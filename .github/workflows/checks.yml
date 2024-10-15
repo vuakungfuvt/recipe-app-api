@@ -21,9 +21,7 @@ jobs:
           sudo apt-get install -y docker-compose
       - name: Initialize Django Project
         run: |
-          if [ ! -f app/manage.py ]; then
             docker-compose run --rm app sh -c "django-admin startproject app ."
-          fi
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
