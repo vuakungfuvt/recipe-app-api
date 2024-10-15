@@ -24,8 +24,6 @@ jobs:
           if [ ! -f app/manage.py ]; then
             docker-compose run --rm app sh -c "django-admin startproject app ."
           fi
-      - name: List /app directory
-        run: python manage.py runserver
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
