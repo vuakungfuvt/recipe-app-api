@@ -15,18 +15,6 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set up Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Set up Docker Compose
-        run: docker-compose up -d
-      - name: Initialize Django Project
-        run: |
-          if [ ! -f app/manage.py ]; then
-            docker-compose run --rm app sh -c "django-admin startproject app ."
-          fi
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
